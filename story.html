@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story — The Alchemist's Brew</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='72' font-size='70' text-anchor='middle'>⚗️</text></svg>">
+
+  <meta name="description" content="The story of Elias and his grandfather's coffee journal.">
+
+  <!-- Social Preview Tags (Open Graph & Twitter) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Story — The Alchemist's Brew">
+  <meta property="og:description" content="The story of Elias and his grandfather's coffee journal.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&h=630&fit=crop">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Story — The Alchemist's Brew">
+  <meta name="twitter:description" content="The story of Elias and his grandfather's coffee journal.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&h=630&fit=crop">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Skip link (accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SVG sprite (icons) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16M4 18h16"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M18 6 6 18M6 6l12 12"/>
+    </symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24">
+      <path d="M5 12h14"/>
+      <path d="m12 5 7 7-7 7"/>
+    </symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24">
+      <path d="M9 3h6M10 3v6L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9V3"/>
+    </symbol>
+  </svg>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <header class="brew-navbar" id="brewNavbar">
+    <div class="container brew-navbar__inner">
+      <a href="index.html" class="brew-navbar__brand">The Alchemist&rsquo;s Brew</a>
+      
+      <nav class="brew-nav-desktop" aria-label="Primary">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="story.html" class="nav-link" aria-current="page">Story</a>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="community.html" class="nav-link">Community</a>
+        <a href="visit.html" class="nav-link">Visit</a>
+      </nav>
+
+      <div class="brew-navbar__actions">
+        <button class="brew-nav-toggle" id="brewNavToggle" aria-label="Open menu" aria-expanded="false">
+          <svg id="brewNavToggleIcon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="brew-mobile-menu" id="brewMobileMenu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="story.html" class="nav-link" aria-current="page">Story</a>
+      <a href="menu.html" class="nav-link">Menu</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="visit.html" class="nav-link">Visit</a>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main id="main-content">
+  
+    <!-- ============================================================
+         1. STORY HERO
+         ============================================================ -->
+    <section class="story-hero">
+      <div class="container-narrow">
+        <p class="story-hero__eyebrow">The Journal</p>
+        <h1 class="story-hero__title">Four chapters, one experiment that never ends.</h1>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. CHAPTER ONE
+         ============================================================ -->
+    <section class="chapter">
+      <div class="container-narrow">
+        <p class="chapter__number">Chapter One</p>
+        <h2 class="chapter__title">The Dusty Workshop</h2>
+        
+        <div class="chapter__content">
+          <p>My grandfather never threw anything away. Not the broken scales, not the burnt coffee tins, not even the notes he scribbled on napkins at 3 a.m. When I opened his old workshop for the first time in ten years, the dust made me sneeze for a week. But under all of it, I found a journal. And on page one, in his crooked handwriting: <em>"Coffee is not a drink. It's a small act of magic. Don't waste it."</em></p>
+        </div>
+        
+        <p class="chapter__signature handwritten">— Elias</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. CHAPTER TWO
+         ============================================================ -->
+    <section class="chapter">
+      <div class="container-narrow">
+        <p class="chapter__number">Chapter Two</p>
+        <h2 class="chapter__title">The Rainy Afternoon</h2>
+        
+        <div class="chapter__content">
+          <p>I was a graphic designer, burnt out, staring at a screen that made me feel nothing. One rainy Tuesday I drove to the workshop just to escape. I found a recipe in the journal — cold brew, smoked vanilla, orange peel. I made it. I took one sip. And for the first time in years, I felt like I was <em>creating</em> something instead of just delivering it.</p>
+        </div>
+        
+        <p class="chapter__signature handwritten">— Elias</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. CHAPTER THREE
+         ============================================================ -->
+    <section class="chapter">
+      <div class="container-narrow">
+        <p class="chapter__number">Chapter Three</p>
+        <h2 class="chapter__title">Quitting the Job</h2>
+        
+        <div class="chapter__content">
+          <p>I sold my car. I quit on a Friday. My boss said I was throwing my life away. Maybe I was. But I had a journal, a bag of beans, and a grandfather whispering in my ear: <em>"Don't waste it."</em></p>
+        </div>
+        
+        <p class="chapter__signature handwritten">— Elias</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. PULL QUOTE
+         ============================================================ -->
+    <section class="pull-quote">
+      <div class="container-narrow">
+        <p class="pull-quote__text">"Coffee is not a drink. It's a small act of magic. Don't waste it."</p>
+        <p class="pull-quote__author">— Grandfather's Journal</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. CHAPTER FOUR
+         ============================================================ -->
+    <section class="chapter">
+      <div class="container-narrow">
+        <p class="chapter__number">Chapter Four</p>
+        <h2 class="chapter__title">The Lab Today</h2>
+        
+        <div class="chapter__content">
+          <p>The Alchemist's Brew isn't a coffee shop. It's an experiment that never ends. Every drink is a trial. Every customer is a co-conspirator. Every Friday, we tell stories. Every month, someone cracks the secret ingredient and drinks free. The journal is still being written. Come add a page.</p>
+        </div>
+        
+        <p class="chapter__closing handwritten">"The best recipes are the ones you haven't tried yet."</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. PHOTOS
+         ============================================================ -->
+    <section class="story-photos">
+      <div class="container">
+        <div class="story-photos__grid">
+          <figure class="story-photos__item">
+            <img src="images/gallery-1.jpg" alt="The Journal">
+            <figcaption>The original journal.</figcaption>
+          </figure>
+          <figure class="story-photos__item">
+            <img src="images/gallery-4.jpg" alt="The Workshop">
+            <figcaption>The workshop today.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. CTA
+         ============================================================ -->
+    <section class="story-cta">
+      <div class="container-narrow">
+        <p class="story-cta__text">Come add a page.</p>
+        <a href="visit.html" class="btn btn--primary">Visit the Lab</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="brew-footer" id="brewFooter">
+    <div class="container brew-footer__grid">
+      
+      <!-- Column 1: Brand -->
+      <div class="brew-footer__col">
+        <a href="index.html" class="brew-footer__brand">The Alchemist&rsquo;s Brew</a>
+        <p class="brew-footer__tagline">Turning beans into gold, and strangers into regulars.</p>
+      </div>
+      
+      <!-- Column 2: Navigate -->
+      <div class="brew-footer__col">
+        <h4 class="brew-footer__heading">Navigate.</h4>
+        <ul class="brew-footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="story.html">Story</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="visit.html">Visit</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Location -->
+      <div class="brew-footer__col">
+        <h4 class="brew-footer__heading">Find us.</h4>
+        <p class="brew-footer__text">14 Lantern Lane, Old Quarter.</p>
+        <p class="brew-footer__text">Mon &ndash; Fri 7am &ndash; 7pm</p>
+        <p class="brew-footer__text">Sat &ndash; Sun 8am &ndash; 5pm</p>
+      </div>
+      
+      <!-- Column 4: Social and Secret -->
+      <div class="brew-footer__col">
+        <h4 class="brew-footer__heading">Follow.</h4>
+        <p class="brew-footer__text">@alchemistsbrew</p>
+        <a href="secret.html" class="brew-footer__secret" aria-label="secret page">
+          <svg aria-hidden="true"><use href="#i-flask"/></svg>
+        </a>
+      </div>
+      
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="container brew-footer__bottom">
+      <div class="brew-footer__bottom-left">
+        <span class="brew-footer__copy">&copy; 2026 The Alchemist&rsquo;s Brew</span>
+        <span class="brew-footer__dot">&middot;</span>
+        <span class="brew-footer__note">First time? Say <strong>EUREKA</strong> for a free flavor vial.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script src="script.js?v=9"></script>
+
+</body>
+</html>

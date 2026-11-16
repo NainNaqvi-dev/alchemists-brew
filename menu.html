@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu — The Alchemist's Brew</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='72' font-size='70' text-anchor='middle'>⚗️</text></svg>">
+
+  <meta name="description" content="Every drink is an experiment. See our field notes.">
+
+  <!-- Social Preview Tags (Open Graph & Twitter) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Menu — The Alchemist's Brew">
+  <meta property="og:description" content="Every drink is an experiment. See our field notes.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&h=630&fit=crop">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Menu — The Alchemist's Brew">
+  <meta name="twitter:description" content="Every drink is an experiment. See our field notes.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&h=630&fit=crop">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9V3"/></symbol>
+  </svg>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <header class="brew-navbar" id="brewNavbar">
+    <div class="container brew-navbar__inner">
+      <a href="index.html" class="brew-navbar__brand">The Alchemist&rsquo;s Brew</a>
+      <nav class="brew-nav-desktop" aria-label="Primary">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="story.html" class="nav-link">Story</a>
+        <a href="menu.html" class="nav-link" aria-current="page">Menu</a>
+        <a href="community.html" class="nav-link">Community</a>
+        <a href="visit.html" class="nav-link">Visit</a>
+      </nav>
+      <div class="brew-navbar__actions">
+        <button class="brew-nav-toggle" id="brewNavToggle" aria-label="Open menu" aria-expanded="false">
+          <svg id="brewNavToggleIcon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="brew-mobile-menu" id="brewMobileMenu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="story.html" class="nav-link">Story</a>
+      <a href="menu.html" class="nav-link" aria-current="page">Menu</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="visit.html" class="nav-link">Visit</a>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main id="main-content">
+  
+    <!-- ============================================================
+         1. MENU HERO
+         ============================================================ -->
+    <section class="menu-hero">
+      <div class="container-narrow">
+        <p class="menu-hero__eyebrow">Field Notes</p>
+        <h1 class="menu-hero__title">The Experiments</h1>
+        <p class="menu-hero__subtitle">Every drink is a trial. Pick your poison.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. FILTER TABS
+         ============================================================ -->
+    <section class="menu-filters">
+      <div class="container">
+        <div class="menu-filters__inner">
+          <button class="filter-btn active" data-filter="all">All Trials</button>
+          <button class="filter-btn" data-filter="trials">Trials</button>
+          <button class="filter-btn" data-filter="brews">Brews</button>
+          <button class="filter-btn" data-filter="infusions">Infusions</button>
+          <button class="filter-btn" data-filter="bakes">Bakes</button>
+          <button class="filter-btn" data-filter="off-menu">Off-Menu</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. EXPERIMENTS GRID
+         ============================================================ -->
+    <section class="menu-grid-section">
+      <div class="container">
+        <div class="menu-grid">
+
+          <!-- Item 1 -->
+          <div class="menu-item" data-category="trials">
+            <div class="menu-item__header">
+              <p class="menu-item__number">Trial No. 014</p>
+              <p class="menu-item__price">$6.50</p>
+            </div>
+            <h3 class="menu-item__name">Smoked Vanilla Cold Brew</h3>
+            <p class="menu-item__ingredients">Cold brew, smoked vanilla, orange peel.</p>
+            <p class="menu-item__story">"The one that started it all."</p>
+            <div class="menu-item__footer">
+              <div class="menu-item__tags">
+                <span class="tag">V</span>
+                <span class="tag">GF</span>
+                <span class="tag">Caffeine: High</span>
+              </div>
+              <span class="menu-item__status menu-item__status--proven">Proven</span>
+            </div>
+            <button class="btn btn--primary menu-item__btn">Add to Cart</button>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="menu-item" data-category="trials">
+            <div class="menu-item__header">
+              <p class="menu-item__number">Trial No. 019</p>
+              <p class="menu-item__price">$7.00</p>
+            </div>
+            <h3 class="menu-item__name">The Midnight Alchemist</h3>
+            <p class="menu-item__ingredients">Black sesame, honey, a whisper of dark cocoa.</p>
+            <p class="menu-item__story">"Saw colors. Would recommend."</p>
+            <div class="menu-item__footer">
+              <div class="menu-item__tags">
+                <span class="tag">V</span>
+                <span class="tag">Caffeine: Medium</span>
+              </div>
+              <span class="menu-item__status menu-item__status--experimental">Experimental</span>
+            </div>
+            <button class="btn btn--primary menu-item__btn">Add to Cart</button>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="menu-item" data-category="brews">
+            <div class="menu-item__header">
+              <p class="menu-item__number">Brew No. 004</p>
+              <p class="menu-item__price">$5.50</p>
+            </div>
+            <h3 class="menu-item__name">The Classic Alchemist</h3>
+            <p class="menu-item__ingredients">House blend, cocoa, toasted almond.</p>
+            <p class="menu-item__story">"Simplicity is the hardest experiment."</p>
+            <div class="menu-item__footer">
+              <div class="menu-item__tags">
+                <span class="tag">GF</span>
+                <span class="tag">Caffeine: High</span>
+              </div>
+              <span class="menu-item__status menu-item__status--proven">Proven</span>
+            </div>
+            <button class="btn btn--primary menu-item__btn">Add to Cart</button>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="menu-item" data-category="infusions">
+            <div class="menu-item__header">
+              <p class="menu-item__number">Infusion No. 008</p>
+              <p class="menu-item__price">$6.00</p>
+            </div>
+            <h3 class="menu-item__name">The Green Trial</h3>
+            <p class="menu-item__ingredients">Matcha, yuzu, sparkling water.</p>
+            <p class="menu-item__story">"Bitterness and brightness can coexist."</p>
+            <div class="menu-item__footer">
+              <div class="menu-item__tags">
+                <span class="tag">V</span>
+                <span class="tag">GF</span>
+                <span class="tag">Caffeine: Low</span>
+              </div>
+              <span class="menu-item__status menu-item__status--experimental">Experimental</span>
+            </div>
+            <button class="btn btn--primary menu-item__btn">Add to Cart</button>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="menu-item" data-category="bakes">
+            <div class="menu-item__header">
+              <p class="menu-item__number">Bake No. 002</p>
+              <p class="menu-item__price">$4.00</p>
+            </div>
+            <h3 class="menu-item__name">The Journal Scone</h3>
+            <p class="menu-item__ingredients">Earl grey, honey, lemon glaze.</p>
+            <p class="menu-item__story">"Best enjoyed with a pen in hand."</p>
+            <div class="menu-item__footer">
+              <div class="menu-item__tags">
+                <span class="tag">V</span>
+                <span class="tag">Contains Nuts</span>
+              </div>
+              <span class="menu-item__status menu-item__status--proven">Proven</span>
+            </div>
+            <button class="btn btn--primary menu-item__btn">Add to Cart</button>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="menu-item" data-category="off-menu">
+            <div class="menu-item__header">
+              <p class="menu-item__number">???</p>
+              <p class="menu-item__price">Free</p>
+            </div>
+            <h3 class="menu-item__name">The Secret Ingredient</h3>
+            <p class="menu-item__ingredients">You have to guess it.</p>
+            <p class="menu-item__story">"Every month, someone cracks it and drinks free."</p>
+            <div class="menu-item__footer">
+              <div class="menu-item__tags">
+                <span class="tag">???</span>
+              </div>
+              <span class="menu-item__status menu-item__status--experimental">One Batch Only</span>
+            </div>
+            <button class="btn btn--outline-dark menu-item__btn">Submit a Guess</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. DIETARY NOTES
+         ============================================================ -->
+    <section class="menu-notes">
+      <div class="container-narrow">
+        <p class="menu-notes__text"><strong>Milk Alternatives:</strong> Oat, almond, and soy are available for all brews. +$0.50.</p>
+        <p class="menu-notes__text"><strong>Allergies:</strong> Please inform us of any allergies. Our kitchen handles nuts, dairy, and gluten.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="brew-footer" id="brewFooter">
+    <div class="container brew-footer__grid">
+      
+      <!-- Column 1: Brand -->
+      <div class="brew-footer__col">
+        <a href="index.html" class="brew-footer__brand">The Alchemist&rsquo;s Brew</a>
+        <p class="brew-footer__tagline">Turning beans into gold, and strangers into regulars.</p>
+      </div>
+      
+      <!-- Column 2: Navigate -->
+      <div class="brew-footer__col">
+        <h4 class="brew-footer__heading">Navigate.</h4>
+        <ul class="brew-footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="story.html">Story</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="visit.html">Visit</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Location -->
+      <div class="brew-footer__col">
+        <h4 class="brew-footer__heading">Find us.</h4>
+        <p class="brew-footer__text">14 Lantern Lane, Old Quarter.</p>
+        <p class="brew-footer__text">Mon &ndash; Fri 7am &ndash; 7pm</p>
+        <p class="brew-footer__text">Sat &ndash; Sun 8am &ndash; 5pm</p>
+      </div>
+      
+      <!-- Column 4: Social and Secret -->
+      <div class="brew-footer__col">
+        <h4 class="brew-footer__heading">Follow.</h4>
+        <p class="brew-footer__text">@alchemistsbrew</p>
+        <a href="secret.html" class="brew-footer__secret" aria-label="secret page">
+          <svg aria-hidden="true"><use href="#i-flask"/></svg>
+        </a>
+      </div>
+      
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="container brew-footer__bottom">
+      <div class="brew-footer__bottom-left">
+        <span class="brew-footer__copy">&copy; 2026 The Alchemist&rsquo;s Brew</span>
+        <span class="brew-footer__dot">&middot;</span>
+        <span class="brew-footer__note">First time? Say <strong>EUREKA</strong> for a free flavor vial.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=9"></script>
+</body>
+</html>

@@ -1,0 +1,1950 @@
+/* ============================================================
+   1. VARIABLES & RESET
+   ============================================================ */
+:root {
+  --espresso: #3B2A20;
+  --copper: #C47B3A;
+  --cream: #F5EFE6;
+  --teal: #1F7A6B;
+  --ink: #1A1410;
+  --page-tint: #FAF4EF;
+
+  --font-display: 'Caveat', cursive;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--page-tint);
+  color: var(--espresso);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
+
+/* ============================================================
+   2. ACCESSIBILITY & UTILITIES
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  left: -10000px;
+  top: 0;
+}
+
+svg[aria-hidden="true"] {
+  display: none;
+}
+
+.container {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.container-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ============================================================
+   3. NAVBAR
+   ============================================================ */
+.brew-navbar {
+  background-color: var(--espresso);
+  border-bottom: 1px solid rgba(59, 42, 32, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brew-navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.brew-navbar__brand {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cream);
+  text-decoration: none;
+  white-space: nowrap; 
+}
+
+.brew-nav-desktop {
+  display: flex;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+.nav-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  color: var(--copper);
+}
+
+.nav-link[aria-current="page"] {
+  color: var(--copper);
+  opacity: 1;
+  font-weight: 700;
+}
+
+.brew-nav-desktop .nav-link {
+  color: var(--cream);
+}
+
+.brew-nav-desktop .nav-link:hover,
+.brew-nav-desktop .nav-link[aria-current="page"] {
+  color: var(--copper);
+}
+
+.brew-nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--copper);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.brew-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: var(--cream);
+  border-top: 1px solid rgba(59, 42, 32, 0.1);
+  padding: 0 1.25rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.brew-mobile-menu.is-open {
+  max-height: 400px; 
+  opacity: 1;
+  padding: 1rem 1.25rem;
+}
+
+.brew-mobile-menu .nav-link {
+  padding: 0.75rem 0;
+  text-align: right; 
+  width: 100%;
+  border-bottom: 1px solid rgba(59, 42, 32, 0.05);
+  color: var(--espresso);
+  opacity: 1;
+}
+
+.brew-mobile-menu .nav-link:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 767px) {
+  .brew-nav-desktop {
+    display: none; 
+  }
+  
+  .brew-nav-toggle {
+    display: block; 
+  }
+
+  .brew-nav-toggle svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+  }
+}
+
+/* ============================================================
+   4. GLOBAL BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background-color: var(--copper);
+  color: var(--cream);
+  border: 1px solid var(--copper);
+}
+
+.btn--primary:hover {
+  background-color: var(--espresso);
+  border-color: var(--espresso);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--cream);
+  border: 1px solid var(--cream);
+}
+
+.btn--outline:hover {
+  background-color: var(--cream);
+  color: var(--espresso);
+}
+
+.btn--outline-dark {
+  background-color: transparent;
+  color: var(--espresso);
+  border: 1px solid var(--espresso);
+}
+
+.btn--outline-dark:hover {
+  background-color: var(--espresso);
+  color: var(--cream);
+}
+
+#addCoffeeBtn {
+  background-color: var(--cream);
+  color: var(--espresso);
+  border: 1px solid var(--cream);
+}
+
+#addCoffeeBtn:active {
+  background-color: var(--copper);
+  color: var(--cream);
+  border: 1px solid var(--copper);
+}
+
+/* ============================================================
+   5. HERO (HOME)
+   ============================================================ */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 8rem 1.25rem;
+  background-color: var(--espresso);
+}
+
+.hero__bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero picture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(26, 20, 16, 0.7), rgba(26, 20, 16, 0.85));
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  color: var(--copper);
+  opacity: 1;
+  margin-bottom: 1rem;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 2rem;
+}
+
+.hero__subtitle {
+  font-size: 1.1rem;
+  color: var(--cream);
+  opacity: 0.7;
+  margin-bottom: 2.5rem;
+  margin-top: 1rem;
+}
+
+.hero__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .hero__buttons {
+    flex-direction: row;
+  }
+}
+
+/* ============================================================
+   6. TODAY'S EXPERIMENT (HOME)
+   ============================================================ */
+.experiment {
+  padding: 6rem 1.25rem;
+}
+
+.experiment__card {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: var(--cream);
+  border: 1px solid rgba(59, 42, 32, 0.1);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 10px 30px rgba(59, 42, 32, 0.05);
+}
+
+.experiment__badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background-color: rgba(31, 122, 107, 0.1);
+  color: var(--teal);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+
+.experiment__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--copper);
+  margin-bottom: 0.5rem;
+}
+
+.experiment__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  color: var(--espresso);
+  margin-bottom: 1rem;
+}
+
+.experiment__desc {
+  color: rgba(59, 42, 32, 0.8);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.experiment__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.experiment__form input {
+  flex: 1;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(59, 42, 32, 0.2);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--espresso);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.experiment__form input:focus {
+  border-color: var(--copper);
+}
+
+.experiment__success {
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--teal);
+  line-height: 1.2;
+  transform: rotate(-1deg);
+}
+
+@media (min-width: 640px) {
+  .experiment__card {
+    padding: 3.5rem;
+  }
+  .experiment__form {
+    flex-direction: row;
+  }
+}
+
+/* ===========================================================
+   7. OPEN TODAY STRIP (HOME)
+   ============================================================ */
+.open-strip {
+  background-color: rgba(196, 123, 58, 0.08);
+  border-top: 1px solid rgba(59, 42, 32, 0.1);
+  border-bottom: 1px solid rgba(59, 42, 32, 0.1);
+}
+
+.open-strip__inner {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.open-strip__info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--espresso);
+}
+
+.open-strip__status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.open-strip__dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--teal);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.open-strip__hours {
+  color: rgba(59, 42, 32, 0.6);
+}
+
+.open-strip__address {
+  font-size: 0.9rem;
+  color: rgba(59, 42, 32, 0.8);
+}
+
+@media (min-width: 768px) {
+  .open-strip__inner {
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+    text-align: left;
+  }
+}
+
+/* ============================================================
+   8. FEATURED DRINKS (HOME)
+   ============================================================ */
+.featured-trials {
+  padding: 5rem 1.25rem;
+}
+
+.featured-trials__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--espresso);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.featured-trials__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.trial-card {
+  background-color: #FAF6F0;
+  border: 1px solid rgba(59, 42, 32, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(59, 42, 32, 0.1);
+}
+
+.trial-card__image {
+  width: 100%;
+  height: 240px;
+}
+
+.trial-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trial-card__content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.trial-card__number {
+  font-family: monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--copper);
+  margin-bottom: 0.5rem;
+}
+
+.trial-card__name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--espresso);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.trial-card__desc {
+  font-size: 0.9rem;
+  color: rgba(59, 42, 32, 0.7);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.trial-card__price {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--copper);
+}
+
+@media (max-width: 900px) {
+  .featured-trials__grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 480px; 
+    overflow: hidden; 
+    perspective: 1000px; 
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  .trial-card {
+    position: absolute;
+    width: 75%;
+    height: 420px;
+    transition: all 0.4s ease;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .trial-card.is-active {
+    transform: translateX(0) scale(1) rotateY(0deg);
+    z-index: 3; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  }
+}
+
+/* ============================================================
+   9. THE JOURNAL QUOTE (HOME)
+   ============================================================ */
+.journal-quote {
+  padding: 6rem 1.25rem;
+  text-align: center;
+  background-color: var(--cream);
+}
+
+.journal-quote__text {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--espresso);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.journal-quote__author {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--copper);
+}
+
+/* ============================================================
+   10. BANNERS (HOME)
+   ============================================================ */
+.banners {
+  padding: 0 1.25rem 6rem 1.25rem;
+}
+
+.container-banners__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.banner-card {
+  background-color: var(--espresso);
+  color: var(--cream);
+  border-radius: 8px;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.banner-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.banner-card__desc {
+  font-size: 1rem;
+  color: rgba(245, 239, 230, 0.8);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  flex-grow: 1; 
+}
+
+@media (min-width: 768px) {
+  .container-banners__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================================
+   11. FROM THE WORKSHOP (HOME)
+   ============================================================ */
+.workshop {
+  padding: 6rem 1.25rem;
+}
+
+.workshop__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--espresso);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.workshop__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.workshop__grid img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.workshop__grid img:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+@media (min-width: 768px) {
+  .workshop__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  
+  .workshop__grid img {
+    height: 300px;
+  }
+}
+
+/* ============================================================
+   12. CUSTOMER REVIEWS (HOME)
+   ============================================================ */
+.reviews {
+  padding: 0 1.25rem 6rem 1.25rem;
+}
+
+.reviews__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--espresso);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.review-card {
+  background-color: #FAF6F0;
+  border: 1px solid rgba(59, 42, 32, 0.1);
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-card__quote {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--espresso);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  font-style: italic;
+}
+
+.review-card__author {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--copper);
+  margin-bottom: 0.5rem;
+}
+
+.review-card__stars {
+  color: var(--copper);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+}
+
+@media (min-width: 768px) {
+  .reviews__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================================
+   13. FOOTER TEASER (HOME)
+   ============================================================ */
+.footer-teaser {
+  padding: 6rem 1.25rem;
+  text-align: center;
+  background-color: var(--espresso);
+  border-bottom: 1px solid rgba(59, 42, 32, 0.1);
+}
+
+.footer-teaser__text {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.footer-teaser .btn {
+  margin-top: 1rem;
+}
+
+/* ============================================================
+   14. FOOTER
+   ============================================================ */
+.brew-footer {
+  background-color: var(--espresso);
+  color: var(--cream);
+}
+
+.brew-footer__grid {
+  display: grid;
+  gap: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.brew-footer__brand {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cream);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+}
+
+.brew-footer__tagline {
+  font-size: 0.9rem;
+  color: rgba(245, 239, 230, 0.7); 
+  line-height: 1.5;
+}
+
+.brew-footer__heading {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--copper);
+  margin-bottom: 0.75rem;
+}
+
+.brew-footer__text {
+  font-size: 0.9rem;
+  color: rgba(245, 239, 230, 0.8);
+  margin-bottom: 0.25rem;
+  line-height: 1.6;
+}
+
+.brew-footer__links {
+  list-style: none;
+}
+
+.brew-footer__links li {
+  margin-bottom: 0.5rem;
+}
+
+.brew-footer__links a {
+  font-size: 0.9rem;
+  color: rgba(245, 239, 230, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.brew-footer__links a:hover {
+  color: var(--copper);
+}
+
+.brew-footer__secret {
+  display: inline-block;
+  margin-top: 0.5rem;
+  opacity: 0.4;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.brew-footer__secret:hover {
+  opacity: 1;
+  transform: scale(1.1) rotate(-10deg); 
+}
+
+.brew-footer__secret svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  stroke: var(--cream);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.brew-footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 1px solid rgba(245, 239, 230, 0.1);
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+  font-size: 0.75rem;
+  color: rgba(245, 239, 230, 0.5);
+  text-align: center;
+}
+
+.brew-footer__bottom-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brew-footer__dot {
+  display: none; 
+}
+
+.brew-footer__note strong {
+  color: var(--copper);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .brew-footer__grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr; 
+  }
+  
+  .brew-footer__bottom {
+    text-align: left;
+  }
+  
+  .brew-footer__bottom-left {
+    flex-direction: row; 
+    justify-content: flex-start;
+  }
+  
+  .brew-footer__dot {
+    display: inline; 
+  }
+}
+
+@media (min-width: 640px) and (max-width: 900px) {
+  .brew-footer__brand {
+    font-size: 1.4rem;
+  }
+}
+
+/* ============================================================
+   15. STORY PAGE - HERO
+   ============================================================ */
+.story-hero {
+  padding: 8rem 1.25rem 6rem 1.25rem;
+  text-align: center;
+  background-color: var(--cream);
+}
+
+.story-hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--copper);
+  margin-bottom: 1.5rem;
+}
+
+.story-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--espresso);
+}
+
+/* ============================================================
+   16. STORY PAGE - CHAPTERS
+   ============================================================ */
+.chapter {
+  padding: 4rem 1.25rem;
+  background-color: var(--page-tint);
+}
+
+.chapter__number {
+  font-family: monospace;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--copper);
+  margin-bottom: 1rem;
+}
+
+.chapter__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  color: var(--espresso);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+.chapter__content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(59, 42, 32, 0.85);
+  margin-bottom: 2rem;
+}
+
+.chapter__content p {
+  margin-bottom: 1.5rem;
+}
+
+.chapter__signature {
+  font-size: 2rem;
+  color: var(--espresso);
+  transform: rotate(-2deg);
+}
+
+.chapter__closing {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: var(--teal);
+  line-height: 1.3;
+  margin-top: 2rem;
+}
+
+/* ============================================================
+   17. STORY PAGE - PULL QUOTE
+   ============================================================ */
+.pull-quote {
+  padding: 6rem 1.25rem;
+  background-color: var(--espresso);
+  text-align: center;
+}
+
+.pull-quote__text {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.pull-quote__author {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--copper);
+}
+
+/* ============================================================
+   18. STORY PAGE - PHOTOS
+   ============================================================ */
+.story-photos {
+  padding: 6rem 1.25rem;
+  background-color: var(--cream);
+}
+
+.story-photos__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.story-photos__item img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.story-photos__item figcaption {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+  color: rgba(59, 42, 32, 0.6);
+  font-style: italic;
+}
+
+/* ============================================================
+   19. STORY PAGE - CTA
+   ============================================================ */
+.story-cta {
+  padding: 6rem 1.25rem;
+  text-align: center;
+  background-color: var(--page-tint);
+}
+
+.story-cta__text {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--espresso);
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .story-photos__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================================
+   20. MENU PAGE - HERO
+   ============================================================ */
+.menu-hero {
+  padding: 8rem 1.25rem 4rem 1.25rem;
+  text-align: center;
+  background-color: var(--cream);
+}
+
+.menu-hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--copper);
+  margin-bottom: 1rem;
+}
+
+.menu-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--espresso);
+  margin-bottom: 1rem;
+}
+
+.menu-hero__subtitle {
+  font-size: 1.1rem;
+  color: rgba(59, 42, 32, 0.7);
+}
+
+/* ============================================================
+   21. MENU PAGE - FILTERS
+   ============================================================ */
+.menu-filters {
+  padding: 2rem 0;
+  background-color: var(--cream);
+  border-bottom: 1px solid rgba(59, 42, 32, 0.1);
+}
+
+.menu-filters__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid rgba(59, 42, 32, 0.2);
+  color: var(--espresso);
+  padding: 0.6rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--copper);
+  color: var(--copper);
+}
+
+.filter-btn.active {
+  background-color: var(--copper);
+  border-color: var(--copper);
+  color: var(--cream);
+}
+
+/* ============================================================
+   22. MENU PAGE - GRID
+   ============================================================ */
+.menu-grid-section {
+  padding: 5rem 1.25rem;
+  background-color: var(--page-tint);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.menu-item {
+  background-color: var(--cream);
+  border: 1px solid rgba(59, 42, 32, 0.1);
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(59, 42, 32, 0.1);
+}
+
+.menu-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.menu-item__number {
+  font-family: monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--copper);
+}
+
+.menu-item__price {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--copper);
+}
+
+.menu-item__name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--espresso);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.menu-item__ingredients {
+  font-size: 0.95rem;
+  color: rgba(59, 42, 32, 0.8);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.menu-item__story {
+  font-size: 0.9rem;
+  color: rgba(59, 42, 32, 0.6);
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.menu-item__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.menu-item__tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  background-color: rgba(59, 42, 32, 0.05);
+  color: rgba(59, 42, 32, 0.7);
+  border-radius: 4px;
+}
+
+.menu-item__status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.menu-item__status--proven {
+  background-color: rgba(31, 122, 107, 0.1);
+  color: var(--teal);
+}
+
+.menu-item__status--experimental {
+  background-color: rgba(196, 123, 58, 0.1);
+  color: var(--copper);
+}
+
+.menu-item__btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* ============================================================
+   23. MENU PAGE - NOTES
+   ============================================================ */
+.menu-notes {
+  padding: 4rem 1.25rem;
+  background-color: var(--cream);
+  border-top: 1px solid rgba(59, 42, 32, 0.1);
+  text-align: center;
+}
+
+.menu-notes__text {
+  font-size: 0.95rem;
+  color: rgba(59, 42, 32, 0.8);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.menu-notes__text strong {
+  color: var(--espresso);
+}
+
+@media (min-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================================
+   24. COMMUNITY HERO
+   ============================================================ */
+.community-hero {
+  padding: 8rem 1.25rem 6rem 1.25rem;
+  text-align: center;
+  background-color: var(--cream);
+}
+
+.community-hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--copper);
+  margin-bottom: 1.5rem;
+}
+
+.community-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--espresso);
+}
+
+/* ============================================================
+   25. SUSPENDED COFFEES
+   ============================================================ */
+.suspended {
+  padding: 4rem 1.25rem;
+  background-color: var(--page-tint);
+}
+
+.suspended__card {
+  background-color: var(--espresso);
+  color: var(--cream);
+  border-radius: 8px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.suspended__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--copper);
+  margin-bottom: 1rem;
+}
+
+.suspended__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.suspended__count {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 6rem);
+  line-height: 1;
+  color: var(--copper);
+  margin-bottom: 0.5rem;
+}
+
+.suspended__desc {
+  font-size: 1rem;
+  color: rgba(245, 239, 230, 0.7);
+  margin-bottom: 2rem;
+}
+
+/* ============================================================
+   26. FRIDAY STORIES
+   ============================================================ */
+.stories {
+  padding: 6rem 1.25rem;
+  background-color: var(--cream);
+}
+
+.stories__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--espresso);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.stories__subtitle {
+  font-size: 1rem;
+  color: rgba(59, 42, 32, 0.7);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.stories__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.story-card {
+  background-color: #FAF6F0;
+  border: 1px solid rgba(59, 42, 32, 0.1);
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.story-card__quote {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--espresso);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  font-style: italic;
+}
+
+.story-card__author {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--copper);
+}
+
+/* ============================================================
+   27. GUESTBOOK
+   ============================================================ */
+.guestbook {
+  padding: 6rem 1.25rem;
+  background-color: var(--page-tint);
+}
+
+.guestbook__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--espresso);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.guestbook__subtitle {
+  font-size: 1rem;
+  color: rgba(59, 42, 32, 0.7);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.guestbook__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.guestbook__form input {
+  flex: 1;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(59, 42, 32, 0.2);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--espresso);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.guestbook__form input:focus {
+  border-color: var(--copper);
+}
+
+.guestbook__wall {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.guestbook__entry {
+  font-size: 1.5rem;
+  color: var(--espresso);
+  padding: 1rem;
+  background-color: rgba(196, 123, 58, 0.1);
+  border-radius: 4px;
+  transform: rotate(-1deg);
+}
+
+/* ============================================================
+   28. COMMUNITY CTA
+   ============================================================ */
+.community-cta {
+  padding: 6rem 1.25rem;
+  text-align: center;
+  background-color: var(--cream);
+}
+
+.community-cta__text {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--espresso);
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .stories__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .guestbook__form {
+    flex-direction: row;
+  }
+}
+
+/* ============================================================
+   29. VISIT PAGE - HERO
+   ============================================================ */
+.visit-hero {
+  padding: 8rem 1.25rem 6rem 1.25rem;
+  text-align: center;
+  background-color: var(--cream);
+}
+
+.visit-hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--copper);
+  margin-bottom: 1.5rem;
+}
+
+.visit-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--espresso);
+  margin-bottom: 1.5rem;
+}
+
+.visit-hero__subtitle {
+  font-size: 1.1rem;
+  color: rgba(59, 42, 32, 0.7);
+}
+
+/* ============================================================
+   30. VISIT PAGE - INFO CARDS
+   ============================================================ */
+.visit-info {
+  padding: 0 1.25rem 6rem 1.25rem;
+  background-color: var(--page-tint);
+}
+
+.visit-info__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.visit-card {
+  background-color: var(--cream);
+  border: 1px solid rgba(59, 42, 32, 0.1);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+}
+
+.visit-card__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--espresso);
+  margin-bottom: 1.5rem;
+}
+
+.visit-card__list {
+  list-style: none;
+}
+
+.visit-card__list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(59, 42, 32, 0.1);
+  color: rgba(59, 42, 32, 0.8);
+}
+
+.visit-card__list li span:first-child {
+  font-weight: 600;
+  color: var(--espresso);
+  flex-shrink: 0;
+}
+
+.visit-card__list li span:last-child {
+  text-align: right;
+}
+
+.visit-card__note {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--copper);
+  font-style: italic;
+}
+
+@media (min-width: 768px) {
+  .visit-info__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================================
+   31. VISIT PAGE - INTERACTIVE MAP
+   ============================================================ */
+.visit-map {
+  padding: 0 1.25rem 6rem 1.25rem;
+  background-color: var(--page-tint);
+}
+
+.map-wrapper {
+  position: relative;
+  max-width: 1152px;
+  margin: 0 auto;
+  height: clamp(420px, 70vh, 640px);
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(59, 42, 32, 0.2);
+  background-color: var(--cream);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.map-wrapper.is-dragging {
+  cursor: grabbing;
+}
+
+.map-world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+
+.map-wrapper.is-animating .map-world {
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.map-wrapper.is-animating .map-marker {
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s ease;
+}
+
+.map-layer {
+  position: absolute;
+  display: block;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Image sizes and positions are set by JS */
+#mapFar {
+  top: 0;
+  left: 0;
+}
+
+/* Closer images are small patches that fade in and blend into the one behind */
+.map-layer--patch {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  -webkit-mask-image: radial-gradient(closest-side, #000 78%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 78%, transparent 100%);
+}
+
+.map-marker {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: 50% 100%;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.map-marker__label {
+  position: relative;
+  background-color: var(--espresso);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(26, 20, 16, 0.4);
+}
+
+.map-marker__label::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--espresso);
+  transform: translateX(-50%) rotate(45deg);
+  z-index: -1;
+}
+
+.map-marker__dot {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  margin-top: 0.5rem;
+  background-color: var(--copper);
+  border: 2px solid var(--cream);
+  border-radius: 50%;
+}
+
+.map-marker__dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background-color: var(--copper);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 2s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
+}
+
+.map-controls {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.map-btn {
+  width: 44px;
+  height: 44px;
+  background-color: var(--cream);
+  color: var(--espresso);
+  border: 1px solid rgba(59, 42, 32, 0.2);
+  border-radius: 4px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.map-btn:hover {
+  background-color: var(--copper);
+  color: var(--cream);
+  border-color: var(--copper);
+}
+
+.map-find {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 10;
+  background-color: var(--copper);
+  color: var(--cream);
+  border: 1px solid var(--copper);
+  border-radius: 4px;
+  padding: 0.7rem 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.map-find:hover {
+  background-color: var(--espresso);
+  border-color: var(--espresso);
+}
+
+/* ============================================================
+   32. VISIT PAGE - CONTACT FORM
+   ============================================================ */
+.visit-contact {
+  padding: 6rem 1.25rem;
+  background-color: var(--cream);
+}
+
+.visit-contact__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--espresso);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.visit-contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.visit-contact__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.visit-contact__group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--espresso);
+}
+
+.visit-contact__group input,
+.visit-contact__group textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(59, 42, 32, 0.2);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--espresso);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.visit-contact__group textarea {
+  resize: vertical;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.visit-contact__group input:focus,
+.visit-contact__group textarea:focus {
+  border-color: var(--copper);
+}
+
+.visit-contact__form .btn {
+  align-self: flex-start;
+}
+
+/* ============================================================
+   33. SECRET PAGE
+   ============================================================ */
+.secret-hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 1.25rem;
+  background-color: var(--cream);
+}
+
+.secret-hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--copper);
+  margin-bottom: 1.5rem;
+}
+
+.secret-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--espresso);
+  margin-bottom: 1.5rem;
+}
+
+.secret-hero__desc {
+  font-size: 1.1rem;
+  color: rgba(59, 42, 32, 0.8);
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+.secret-hero__signature {
+  font-size: 2rem;
+  color: var(--copper);
+}
+
+/* Contact form confirmation message */
+.visit-contact__status {
+  margin-top: 1rem;
+  color: var(--teal);
+  font-weight: 500;
+}

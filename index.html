@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Alchemist's Brew — Coffee Lab & Journal</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='72' font-size='70' text-anchor='middle'>⚗️</text></svg>">
+
+  <meta name="description" content="A coffee shop that reads like a journal. Every drink is an experiment. Come for the espresso. Stay for the experiment.">
+
+  <!-- Social Preview Tags (Open Graph & Twitter) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Alchemist's Brew — Coffee Lab & Journal">
+  <meta property="og:description" content="A coffee shop that reads like a journal. Every drink is an experiment.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&h=630&fit=crop">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Alchemist's Brew — Coffee Lab & Journal">
+  <meta name="twitter:description" content="A coffee shop that reads like a journal. Every drink is an experiment.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&h=630&fit=crop">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css?V=2">
+</head>
+
+<body>
+
+  <!-- Skip link (accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SVG sprite (icons) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16M4 18h16"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M18 6 6 18M6 6l12 12"/>
+    </symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24">
+      <path d="M5 12h14"/>
+      <path d="m12 5 7 7-7 7"/>
+    </symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24">
+      <path d="M9 3h6M10 3v6L4.5 19a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9V3"/>
+    </symbol>
+  </svg>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <header class="brew-navbar" id="brewNavbar">
+    <div class="container brew-navbar__inner">
+      <a href="index.html" class="brew-navbar__brand">The Alchemist&rsquo;s Brew</a>
+      
+      <nav class="brew-nav-desktop" aria-label="Primary">
+        <a href="index.html" class="nav-link" aria-current="page">Home</a>
+        <a href="story.html" class="nav-link">Story</a>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="community.html" class="nav-link">Community</a>
+        <a href="visit.html" class="nav-link">Visit</a>
+      </nav>
+
+      <div class="brew-navbar__actions">
+        <button class="brew-nav-toggle" id="brewNavToggle" aria-label="Open menu" aria-expanded="false">
+          <svg id="brewNavToggleIcon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="brew-mobile-menu" id="brewMobileMenu">
+      <a href="index.html" class="nav-link" aria-current="page">Home</a>
+      <a href="story.html" class="nav-link">Story</a>
+      <a href="menu.html" class="nav-link">Menu</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="visit.html" class="nav-link">Visit</a>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main id="main-content">
+  
+    <!-- ============================================================
+         1. HERO
+         ============================================================ -->
+    <section class="hero">
+      <picture>
+        <source media="(max-width: 767px)" srcset="images/hero-mobile.png">
+        <img src="images/hero-desktop.png" alt="Coffee lab background" class="hero__bg-img">
+      </picture>
+      
+      <div class="container hero__content">
+        <p class="hero__eyebrow">The Alchemist's Brew</p>
+        <h1 class="hero__title">Coffee is not a drink. It's a small act of magic.</h1>
+        <p class="hero__subtitle">An experiment that never ends.</p>
+        
+        <div class="hero__buttons">
+          <a href="menu.html" class="btn btn--primary">View the Experiments</a>
+          <a href="story.html" class="btn btn--outline">Read the Journal</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. TODAY'S EXPERIMENT
+         ============================================================ -->
+    <section class="experiment" id="experiment">
+      <div class="container">
+        <div class="experiment__card">
+          <span class="experiment__badge">Today</span>
+          <p class="experiment__eyebrow">Today's Experiment</p>
+          <h2 class="experiment__title">The Midnight Alchemist</h2>
+          <p class="experiment__desc">
+            Black coffee, black sesame, a whisper of honey. Guess the secret ingredient, your next cup is free.
+          </p>
+          
+          <form class="experiment__form" id="guessForm">
+            <input type="text" id="guessInput" placeholder="Your guess..." required>
+            <button type="submit" class="btn btn--primary">Submit Guess</button>
+          </form>
+          
+          <p class="experiment__success" id="guessSuccess" hidden>
+            Locked in. If you're right, we'll know. — Elias.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. OPEN TODAY STRIP
+         ============================================================ -->
+    <section class="open-strip">
+      <div class="container open-strip__inner">
+        <div class="open-strip__info">
+          <span class="open-strip__status">
+            <span class="open-strip__dot"></span> Open Today
+          </span>
+          <span class="open-strip__hours">Mon &ndash; Fri 7am &ndash; 7pm</span>
+        </div>
+        <div class="open-strip__address">
+          14 Lantern Lane, Old Quarter
+        </div>
+        <div class="open-strip__action">
+          <a href="visit.html" class="btn btn--outline-dark">Find the Lab</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. FEATURED DRINKS (CURRENT TRIALS)
+         ============================================================ -->
+    <section class="featured-trials">
+       <div class="container">
+          <h2 class="featured-trials__title">Current Trials</h2>
+          
+          <div class="featured-trials__grid">
+          
+             <!-- Trial 1 -->
+             <div class="trial-card is-active">
+                <div class="trial-card__image">
+                   <img src="images/trial-1.png" alt="Smoked Vanilla Cold Brew">
+                </div>
+                <div class="trial-card__content">
+                   <p class="trial-card__number">Trial No. 014</p>
+                   <h3 class="trial-card__name">Smoked Vanilla Cold Brew</h3>
+                   <p class="trial-card__desc">Cold Brew, smoked vanilla, orange peel.</p>
+                   <p class="trial-card__price">$6.50</p>
+                </div>
+             </div>
+             
+             <!-- Trial 2 -->
+             <div class="trial-card">
+                <div class="trial-card__image">
+                   <img src="images/trial-2.png" alt="The Midnight Alchemist">
+                </div>
+                <div class="trial-card__content">
+                   <p class="trial-card__number">Trial No. 019</p>
+                   <h3 class="trial-card__name">The Midnight Alchemist</h3>
+                   <p class="trial-card__desc">Black sesame, honey, a whisper of dark cocoa.</p>
+                   <p class="trial-card__price">$7.00</p>
+                </div>
+             </div>
+                
+             <!-- Trial 3 -->
+             <div class="trial-card">
+                <div class="trial-card__image">
+                   <img src="images/trial-3.jpg" alt="The Philosopher's Stone">
+                </div>
+                <div class="trial-card__content">
+                   <p class="trial-card__number">Trial No. 022</p>
+                   <h3 class="trial-card__name">The Philosopher's Stone</h3>
+                   <p class="trial-card__desc">Matcha, honey cream, gold dust.</p>
+                   <p class="trial-card__price">$7.50</p>
+                </div>
+             </div>
+             
+          </div>
+       </div>
+    </section>
+
+    <!-- ============================================================
+         5. THE JOURNAL QUOTE
+         ============================================================ -->
+    <section class="journal-quote">
+       <div class="container-narrow">
+          <p class="journal-quote__text">Coffee is not a drink. It's a small act of magic. Don't waste it.</p>
+          <p class="journal-quote__author">— Grandfather's Journal, Page 1</p>
+       </div>
+    </section>
+
+    <!-- ============================================================
+         6. BANNERS (FRIDAY STORIES & SECRET INGREDIENT)
+         ============================================================ -->
+    <section class="banners">
+       <div class="container-banners__grid">
+       
+          <!-- Friday story -->
+          <div class="banner-card">
+             <h3 class="banner-card__title">Every Friday, we tell stories.</h3>
+             <p class="banner-card__desc">Join us at 7pm. Five minutes. One story. Free drink for the best one.</p>
+             <a href="community.html" class="btn btn--outline">Read the Stories</a>    
+          </div>
+          
+          <!-- Secret Ingredient-->
+          <div class="banner-card">
+             <h3 class="banner-card__title">The Secret Ingredient</h3>
+             <p class="banner-card__desc">Every month, someone cracks it and drinks free.</p>
+             <a href="menu.html" class="btn btn--outline">See the Menu</a>    
+          </div>
+          
+       </div>
+    </section>
+
+    <!-- ============================================================
+         7. FROM THE WORKSHOP (GALLERY GRID)
+         ============================================================ -->
+    <section class="workshop">
+      <div class="container">
+        <h2 class="workshop__title">From the Workshop</h2>
+        
+        <div class="workshop__grid">
+          <img src="images/gallery-1.jpg" alt="A weathered leather journal with a brass fountain pen">
+          <img src="images/gallery-2.jpg" alt="Roasted coffee beans spilling from a brass scoop">
+          <img src="images/gallery-3.jpg" alt="A barista pouring steamed milk from a copper pitcher">
+          <img src="images/gallery-4.jpg" alt="The coffee lab interior with exposed brick and a leather armchair">
+          <img src="images/gallery-5.jpg" alt="A shelf of antique bottles, brass scales and fairy lights">
+          <img src="images/gallery-6.jpg" alt="A finished latte with cinnamon sticks and coffee beans">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. CUSTOMER REVIEWS
+         ============================================================ -->
+    <section class="reviews">
+       <div class="container">
+          <h2 class="reviews__title">From the Journal, Vol. IV</h2>
+          
+          <div class="reviews__grid">
+              
+             <div class="review-card">
+               <p class="review-card__quote">"Tried Trial No. 019. Saw colors. Would recommend."</p>
+               <p class="review-card__author">— M.</p>
+               <p class="review-card__stars">★★★★★</p>
+             </div>
+             
+             <div class="review-card">
+               <p class="review-card__quote">"The Philosopher's Stone is a scam. I drank three and I'm still not immortal. (Delicious though.)"</p>
+               <p class="review-card__author">— Sarah.</p>
+               <p class="review-card__stars">★★★★★</p>
+             </div>
+          
+             <div class="review-card">
+               <p class="review-card__quote">"Elias knows my order before I say it. That's not coffee. That's magic."</p>
+               <p class="review-card__author">— Regular, 3 Years.</p>
+               <p class="review-card__stars">★★★★★</p>
+             </div>
+          
+          </div>
+       </div>
+    </section>
+
+    <!-- ============================================================
+         9. FOOTER TEASER
+         ============================================================ -->
+    <section class="footer-teaser">
+      <div class="container-narrow">
+        <p class="footer-teaser__text">"The journal is still being written. Come add a page."</p>
+        <a href="visit.html" class="btn btn--primary">Visit the Lab</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       10. FOOTER
+       ============================================================ -->
+  <footer class="brew-footer" id="brewFooter">
+    <div class="container brew-footer__grid">
+      
+      <!-- Column 1: Brand -->
+      <div class="brew-footer__col">
+        <a href="index.html" class="brew-footer__brand">The Alchemist&rsquo;s Brew</a>
+        <p class="brew-footer__tagline">Turning beans into gold, and strangers into regulars.</p>
+      </div>
+      
+      <!-- Column 2: Navigate -->
+      <div class="brew-footer__col">
+        <h4 class="brew-footer__heading">Navigate.</h4>
+        <ul class="brew-footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="story.html">Story</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="visit.html">Visit</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Location -->
+      <div class="brew-footer__col">
+        <h4 class="brew-footer__heading">Find us.</h4>
+        <p class="brew-footer__text">14 Lantern Lane, Old Quarter.</p>
+        <p class="brew-footer__text">Mon &ndash; Fri 7am &ndash; 7pm</p>
+        <p class="brew-footer__text">Sat &ndash; Sun 8am &ndash; 5pm</p>
+      </div>
+      
+      <!-- Column 4: Social and Secret -->
+      <div class="brew-footer__col">
+        <h4 class="brew-footer__heading">Follow.</h4>
+        <p class="brew-footer__text">@alchemistsbrew</p>
+        <a href="secret.html" class="brew-footer__secret" aria-label="secret page">
+          <svg aria-hidden="true"><use href="#i-flask"/></svg>
+        </a>
+      </div>
+      
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="container brew-footer__bottom">
+      <div class="brew-footer__bottom-left">
+        <span class="brew-footer__copy">&copy; 2026 The Alchemist&rsquo;s Brew</span>
+        <span class="brew-footer__dot">&middot;</span>
+        <span class="brew-footer__note">First time? Say <strong>EUREKA</strong> for a free flavor vial.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script src="script.js?v=10"></script>
+
+</body>
+</html>
